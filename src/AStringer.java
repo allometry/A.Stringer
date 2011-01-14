@@ -24,20 +24,20 @@ import org.rsbot.script.Skills;
 import org.rsbot.script.wrappers.RSInterfaceChild;
 
 /**
- * A. Humidifier (Allometry Humidifier)
+ * A. Stringer (Allometry Stringer)
  * 
- * This script is designed for RuneDev and is intended for filling vials with
- * the lunar humidify spell at any bank, including the grand exchange.
+ * This script is designed for RuneDev and is intended for stringing amulets with
+ * the lunar string jewelery spell at any bank, including the grand exchange.
  * 
  * Before starting this script, ensure that your bank is currently showing both
- * empty and filled vials on the same tab. This script will not look for your
+ * unstrung and strung gold amulets on the same tab. This script will not look for your
  * bank items!
  * 
- * In addition, it is recommended that you sell your vials at or above market
+ * In addition, it is recommended that you sell your amulets at or above market
  * price. This script is capable of fluctuating market prices and a steep
- * decrease in filled vial price would make this script non-profitable.
+ * decrease in strung amulet's price would make this script non-profitable.
  * 
- * Copyright (c) 2010
+ * Copyright (c) 2011
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,11 +58,11 @@ import org.rsbot.script.wrappers.RSInterfaceChild;
  * SOFTWARE.
  * 
  * @author allometry
- * @version 1.0
+ * @version 0.1
  * @since 0.1
  */
 
-@ScriptManifest(authors = { "Allometry" }, category = "Magic", name = "A. Stringer", version = 1.0,
+@ScriptManifest(authors = { "Allometry" }, category = "Magic", name = "A. Stringer", version = 0.1,
 		description = "" +
 				"<html>" +
 				"<head>" +
@@ -128,10 +128,10 @@ public class AStringer extends Script implements PaintListener {
 			coinsAddImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/coins_add.png"));
 			coinsDeleteImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/coins_delete.png"));
 			cursorImage = ImageIO.read(new URL("http://scripts.allometry.com/app/webroot/img/cursors/cursor-01.png"));
-			drinkImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/drink.png"));
+			drinkImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/medal_gold_3.png"));
 			sumImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/sum.png"));
 			timeImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/time.png"));
-			weatherImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/weather_rain.png"));
+			weatherImage = ImageIO.read(new URL("http://scripts.allometry.com/icons/wand.png"));
 			
 			log.info("Success! All image resources have been loaded...");
 		} catch (IOException e) {
@@ -582,6 +582,9 @@ public class AStringer extends Script implements PaintListener {
 				while(isLoggedIn() && !isPaused && isThreadsRunning) {
 					currentMagicEP = skills.getCurrentSkillExp(Skills.getStatIndex("Magic"));
 					currentMagicLevel = skills.getCurrSkillLevel(Skills.getStatIndex("Magic"));
+
+					accumulatedStrungAmulets = (currentMagicEP - startingMagicEP) / 83;
+					accumulatedStringJewelleryCasts = accumulatedStrungAmulets;
 					
 					if(currentMagicLevel > startingMagicLevel)
 						magicEPEarnedWidgetText = numberFormatter.format((currentMagicEP - startingMagicEP)) + " (+" + (currentMagicLevel - startingMagicLevel) + ")";
