@@ -1,0 +1,12 @@
+A. Stringer (Allometry Stringer)
+
+This script is designed for RuneDev and is intended for stringing amulets with
+the lunar string jewelery spell at any bank, including the grand exchange.
+
+Before starting this script, ensure that your bank is currently showing both
+unstrung and strung gold amulets on the same tab. This script will not look for your
+bank items!
+
+In addition, it is recommended that you sell your amulets at or above market
+price. This script is capable of fluctuating market prices and a steep
+decrease in strung amulet's price would make this script non-profitable.
